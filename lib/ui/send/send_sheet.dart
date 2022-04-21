@@ -93,7 +93,7 @@ class _SendSheetState extends State<SendSheet> {
     _sendAddressController = TextEditingController();
     _sendAddressStyle = AddressStyle.TEXT60;
     _contacts = List();
-    quickSendAmount = widget.quickSendAmount;
+    quickSendAmount = widget.quickSendAmount; //THIS IS THE TARGET
     this.animationOpen = false;
     if (widget.contact != null) {
       // Setup initial state for contact pre-filled
@@ -345,9 +345,11 @@ class _SendSheetState extends State<SendSheet> {
                                                             locale: StateContainer
                                                                     .of(context)
                                                                 .currencyLocale)
-                                                    : "Ӿ" + StateContainer.of(context)
-                                                        .wallet
-                                                        .getAccountBalanceDisplay(),
+                                                    : "Ӿ" +
+                                                        StateContainer.of(
+                                                                context)
+                                                            .wallet
+                                                            .getAccountBalanceDisplay(),
                                                 style: TextStyle(
                                                   color:
                                                       StateContainer.of(context)

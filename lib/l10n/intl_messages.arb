@@ -948,7 +948,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "exampleCardIntro": "Welcome to Natrium. Once you receive NANO, transactions will show up like this:",
+  "exampleCardIntro": "Welcome to Abpay. Once you receive NANO, transactions will show up like this:",
   "@exampleCardIntro": {
     "description": "example_card_intro",
     "type": "text",

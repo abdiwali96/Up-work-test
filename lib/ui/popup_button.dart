@@ -61,6 +61,8 @@ class _AppPopupButtonState extends State<AppPopupButton> {
       try {
         _showMantaAnimation();
         // Get manta payment request
+
+        //results from drag - its the context pop
         MantaWallet manta = MantaWallet(scanResult);
         PaymentRequestMessage paymentRequest =
             await MantaUtil.getPaymentDetails(manta);
@@ -230,7 +232,7 @@ class _AppPopupButtonState extends State<AppPopupButton> {
                       StateContainer.of(context).wallet.accountBalance >
                           BigInt.zero
                   ? isSendButtonColorPrimary
-                      ? StateContainer.of(context).curTheme.primary
+                      ? Color.fromARGB(255, 16, 3, 201) // send button colour
                       : StateContainer.of(context).curTheme.success
                   : StateContainer.of(context).curTheme.primary60,
               child: AutoSizeText(

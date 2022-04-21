@@ -15,6 +15,7 @@ import 'package:natrium_wallet_flutter/ui/before_scan_screen.dart';
 import 'package:natrium_wallet_flutter/ui/intro/intro_backup_safety.dart';
 import 'package:natrium_wallet_flutter/ui/intro/intro_password.dart';
 import 'package:natrium_wallet_flutter/ui/intro/intro_password_on_launch.dart';
+import 'package:natrium_wallet_flutter/ui/mainhome.dart';
 import 'package:natrium_wallet_flutter/ui/password_lock_screen.dart';
 import 'package:natrium_wallet_flutter/ui/widgets/dialog.dart';
 import 'package:natrium_wallet_flutter/util/caseconverter.dart';
@@ -208,14 +209,12 @@ class _AppState extends State<App> {
               );
             case '/home':
               return NoTransitionRoute(
-                builder: (_) =>
-                    AppHomePage(priceConversion: settings.arguments),
+                builder: (_) => mainhome(),
                 settings: settings,
               );
             case '/home_transition':
               return NoPopTransitionRoute(
-                builder: (_) =>
-                    AppHomePage(priceConversion: settings.arguments),
+                builder: (_) => mainhome(),
                 settings: settings,
               );
             case '/intro_welcome':

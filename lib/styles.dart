@@ -219,7 +219,7 @@ class AppStyles {
     return TextStyle(
         fontFamily: "NunitoSans",
         color: StateContainer.of(context).curTheme.primary60,
-        fontSize: AppFontSizes.smallest,
+        fontSize: AppFontSizes.small,
         fontWeight: FontWeight.w600);
   }
 

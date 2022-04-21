@@ -62,7 +62,8 @@ class AppLocalization {
   }
 
   String get receive {
-    return Intl.message('Receive', desc: 'home_receive_cta', name: 'receive');
+    return Intl.message('Receive to',
+        desc: 'home_receive_cta', name: 'receive');
   }
 
   String get sent {
@@ -874,7 +875,7 @@ class AppLocalization {
 
   String get exampleCardIntro {
     return Intl.message(
-        "Welcome to Natrium. Once you receive NANO, transactions will show up like this:",
+        "Welcome to Abpay. Once you receive NANO, transactions will show up like this:",
         desc: 'example_card_intro',
         name: 'exampleCardIntro');
   }
@@ -895,7 +896,7 @@ class AppLocalization {
   }
 
   String get exampleCardFrom {
-    return Intl.message("from someone",
+    return Intl.message("from friend",
         desc: 'example_card_from', name: 'exampleCardFrom');
   }
 
