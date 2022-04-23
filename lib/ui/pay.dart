@@ -164,7 +164,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
         ),
         itemCount: numbers.length,
         itemBuilder: (BuildContext context, int index) {
-          int number = numbers[index];
+          double number = numbers[index];
           if (index == 9) return Container(height: 0, width: 0);
           return InkWell(
             borderRadius: BorderRadius.circular(360),
@@ -218,5 +218,5 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
     );
   }
 
-  static List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1];
+  static List<double> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1];
 }

@@ -93,7 +93,7 @@ class _SendSheetState extends State<SendSheet> {
     _sendAddressController = TextEditingController();
     _sendAddressStyle = AddressStyle.TEXT60;
     _contacts = List();
-    quickSendAmount = widget.quickSendAmount; //THIS IS THE TARGET
+    quickSendAmount = widget.quickSendAmount;
     this.animationOpen = false;
     if (widget.contact != null) {
       // Setup initial state for contact pre-filled
@@ -757,6 +757,7 @@ class _SendSheetState extends State<SendSheet> {
   bool _isMaxSend() {
     // Sanitize commas
     if (_sendAmountController.text.isEmpty) {
+      _sendAmountController.text = '0.0033001';
       return false;
     }
     try {

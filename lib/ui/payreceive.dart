@@ -71,17 +71,48 @@ class _AppHomePageState extends State<paysendpage>
 // added
   List numberAsList = [];
 
-  String money = '20';
+  String money = '00';
+  bool firstEnter = true;
+  bool hasDecimal = false;
 
-  static List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1];
+  static List<String> numbers = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '.',
+    '0',
+    '-1',
+  ];
 //
   Widget bodyofpay() {
     return Column(
       children: [
         moneyWidget(),
+
+        balance(),
         keypadWidget(),
+
         //button(),
       ],
+    );
+  }
+
+  Widget balance() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 28,
+        top: 5,
+        right: 28,
+        bottom: 30,
+      ),
+      child: Text(
+          'Balance: Ӿ${StateContainer.of(context).wallet.getAccountBalanceDisplay()}'),
     );
   }
 
@@ -118,43 +149,55 @@ class _AppHomePageState extends State<paysendpage>
   }
 
   Widget moneyWidget() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 28),
-      child: RichText(
+    return Container(
+      height: 100,
+      child: FittedBox(
+        fit: BoxFit.fitWidth,
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 40,
+            top: 15,
+            right: 40,
+            bottom: 10,
+          ),
+          child: RichText(
 //$
-          text: TextSpan(
-        text: '\Ӿ',
-        style: TextStyle(
-          fontSize: 60,
-          color: Color.fromARGB(255, 153, 190, 222).withOpacity(0.5),
-          fontWeight: FontWeight.w300,
-        ),
-        children: [
-//20
-          TextSpan(
-            text: money,
+              text: TextSpan(
+            text: '\Ӿ',
             style: TextStyle(
               fontSize: 60,
-              color: Colors.white,
-              fontWeight: FontWeight.w400,
+              color: Color.fromARGB(255, 153, 190, 222).withOpacity(0.5),
+              fontWeight: FontWeight.w300,
             ),
-          ),
-//.0
-          if (money != '')
-            TextSpan(
-                text: '.0',
+            children: [
+//20
+              TextSpan(
+                text: money,
                 style: TextStyle(
                   fontSize: 60,
-                  color: Color.fromARGB(255, 153, 190, 222).withOpacity(0.5),
-                  fontWeight: FontWeight.w300,
-                )),
-        ],
-      )),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+//.0
+              if ((money != '') && (firstEnter == true))
+                TextSpan(
+                    text: '.0',
+                    style: TextStyle(
+                      fontSize: 60,
+                      color:
+                          Color.fromARGB(255, 153, 190, 222).withOpacity(0.5),
+                      fontWeight: FontWeight.w300,
+                    )),
+            ],
+          )),
+        ),
+      ),
     );
   }
 
   Widget keypadWidget() {
-    return Flexible(
+    return Expanded(
       child: GridView.builder(
         padding: EdgeInsets.symmetric(
           horizontal: 40,
@@ -167,11 +210,17 @@ class _AppHomePageState extends State<paysendpage>
         ),
         itemCount: numbers.length,
         itemBuilder: (BuildContext context, int index) {
-          int number = numbers[index];
-          if (index == 9) return Container(height: 0, width: 0);
+          String number = numbers[index];
+          //if (index == 10) return Container(height: 0, width: 0);
           return InkWell(
             borderRadius: BorderRadius.circular(360),
             onTap: () {
+              if (firstEnter) {
+                money = '';
+              }
+
+              firstEnter = false;
+              print(firstEnter);
               if (index == 11) {
                 try {
                   setState(() => money =
@@ -182,6 +231,7 @@ class _AppHomePageState extends State<paysendpage>
               } else {
                 setState(() => money = '$money$number');
               }
+              print(money); //debug
             },
             child: Container(
               child: index == 11

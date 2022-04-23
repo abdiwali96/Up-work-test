@@ -62,7 +62,6 @@ class _AppPopupButtonState extends State<AppPopupButton> {
         _showMantaAnimation();
         // Get manta payment request
 
-        //results from drag - its the context pop
         MantaWallet manta = MantaWallet(scanResult);
         PaymentRequestMessage paymentRequest =
             await MantaUtil.getPaymentDetails(manta);
