@@ -1073,7 +1073,7 @@ class _AppHomePageState extends State<paysendpage>
                         ),
                       ),
                       //fuunction below is for SEND BUTTON!!
-                      AppPopupButton(),
+                      AppPopupButton(money), //Send money from the keyboard input
                     ],
                   ),
                 ],

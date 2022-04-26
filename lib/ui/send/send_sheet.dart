@@ -67,6 +67,7 @@ class _SendSheetState extends State<SendSheet> {
   String _amountValidationText = "";
   String _addressValidationText = "";
   String quickSendAmount;
+  String SendAmt = ''; //new variable
   List<Contact> _contacts;
   bool animationOpen;
   // Used to replace address textfield with colorized TextSpan
@@ -87,6 +88,7 @@ class _SendSheetState extends State<SendSheet> {
   @override
   void initState() {
     super.initState();
+    SendAmt = widget.quickSendAmount;//Assignment
     _sendAmountFocusNode = FocusNode();
     _sendAddressFocusNode = FocusNode();
     _sendAmountController = TextEditingController();
@@ -113,27 +115,29 @@ class _SendSheetState extends State<SendSheet> {
     // On amount focus change
     _sendAmountFocusNode.addListener(() {
       if (_sendAmountFocusNode.hasFocus) {
-        if (_rawAmount != null) {
-          setState(() {
-            _sendAmountController.text =
-                NumberUtil.getRawAsUsableString(_rawAmount).replaceAll(",", "");
-            _rawAmount = null;
-          });
-        }
-        if (quickSendAmount != null) {
-          _sendAmountController.text = "";
-          setState(() {
-            quickSendAmount = null;
-          });
-        }
-        setState(() {
-          _amountHint = null;
-        });
-      } else {
-        setState(() {
-          _amountHint = "";
-        });
+        _sendAmountController.text = SendAmt;
       }
+      //   if (_rawAmount != null) {
+      //     setState(() {
+      //       _sendAmountController.text =
+      //           NumberUtil.getRawAsUsableString(_rawAmount).replaceAll(",", "");
+      //       _rawAmount = null;
+      //     });
+      //   }
+      //   if (quickSendAmount != null) {
+      //     _sendAmountController.text = quickSendAmount;
+      //     setState(() {
+      //       quickSendAmount = null;
+      //     });
+      //   }
+      //   setState(() {
+      //     _amountHint = null;
+      //   });
+      // } else {
+      //   setState(() {
+      //     _amountHint = "";
+      //   });
+      // }
     });
     // On address focus change
     _sendAddressFocusNode.addListener(() {
@@ -175,10 +179,10 @@ class _SendSheetState extends State<SendSheet> {
         locale: widget.localCurrency.getLocale().toString(),
         symbol: widget.localCurrency.getCurrencySymbol());
     // Set quick send amount
-    if (quickSendAmount != null) {
-      _sendAmountController.text =
-          NumberUtil.getRawAsUsableString(quickSendAmount).replaceAll(",", "");
-    }
+    // if (quickSendAmount != null) {
+    //   _sendAmountController.text =
+    //       NumberUtil.getRawAsUsableString(quickSendAmount).replaceAll(",", "");
+    // }
   }
 
   void _showMantaAnimation() {
@@ -757,7 +761,7 @@ class _SendSheetState extends State<SendSheet> {
   bool _isMaxSend() {
     // Sanitize commas
     if (_sendAmountController.text.isEmpty) {
-      _sendAmountController.text = '0.0033001';
+      _sendAmountController.text = SendAmt;
       return false;
     }
     try {

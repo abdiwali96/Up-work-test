@@ -970,7 +970,7 @@ class _AppHomePageState extends State<AppHomePage>
                               : Colors.transparent,
                         ),
                       ),
-                      AppPopupButton(),
+                      AppPopupButton('0'), //Added '0' to make sure on the popup we have a number display
                     ],
                   ),
                 ],
@@ -1029,6 +1029,7 @@ class _AppHomePageState extends State<AppHomePage>
             releaseAnimation = true;
           });
         } else {
+          print(item.toJson());
           // See if a contact
           sl
               .get<DBHelper>()
@@ -1041,7 +1042,7 @@ class _AppHomePageState extends State<AppHomePage>
                   localCurrency: StateContainer.of(context).curCurrency,
                   contact: contact,
                   address: item.account,
-                  quickSendAmount: item.amount,
+                  quickSendAmount: item.amount, //Remember that this part is the STRING AMOUNT that is being fetched from the database
                 ));
           });
         }

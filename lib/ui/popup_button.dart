@@ -20,6 +20,8 @@ import 'package:natrium_wallet_flutter/util/manta.dart';
 import 'package:natrium_wallet_flutter/util/user_data_util.dart';
 
 class AppPopupButton extends StatefulWidget {
+  final String money; //instantiate variable
+  AppPopupButton(this.money);//Accept String Amount
   @override
   _AppPopupButtonState createState() => _AppPopupButtonState();
 }
@@ -248,6 +250,7 @@ class _AppPopupButtonState extends State<AppPopupButton> {
                   Sheets.showAppHeightNineSheet(
                       context: context,
                       widget: SendSheet(
+                        quickSendAmount: widget.money, //Send amount to send_sheet
                           localCurrency:
                               StateContainer.of(context).curCurrency));
                 }
